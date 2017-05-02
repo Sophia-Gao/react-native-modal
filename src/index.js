@@ -33,7 +33,7 @@ export class ReactNativeModal extends Component {
     animationOut: 'slideOutDown',
     animationOutTiming: 300,
     backdropColor: 'black',
-    backdropOpacity: 0.70,
+    backdropOpacity: 0.50,
     backdropTransitionInTiming: 300,
     backdropTransitionOutTiming: 300,
     onModalShow: () => null,
