@@ -148,7 +148,7 @@ export class ReactNativeModal extends Component {
           ref={ref => this.backdropRef = ref}
           style={[
             styles.backdrop,
-            { backgroundColor: backdropColor, width: deviceWidth, height: deviceHeight },
+            { backgroundColor: 'red', width: deviceWidth, height: deviceHeight },
           ]}
         />
         <View
