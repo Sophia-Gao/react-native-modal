@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Dimensions, Modal, TouchableHighlight } from 'react-native';
+import { Dimensions, Modal, TouchableOpacity } from 'react-native';
 import { View, initializeRegistryWithDefinitions } from 'react-native-animatable';
 import * as ANIMATION_DEFINITIONS from './animations';
 
@@ -146,18 +146,16 @@ export class ReactNativeModal extends Component {
         onRequestClose={this._closeOnBack}
         {...otherProps}
       >
-        <TouchableHighlight
+        <TouchableOpacity
           activeOpacity={isBackPressDismiss ? 0.5 : 1}
-          onPress={() => this._close()} >
-          <View
-            onLayout={this._handleLayout}
-            ref={ref => this.backdropRef = ref}
-            style={[
-              styles.backdrop,
-              { width: deviceWidth, height: deviceHeight },
-            ]}
-          />
-        </TouchableHighlight>
+          onPress={() => this._close()}
+          onLayout={this._handleLayout}
+          ref={ref => this.backdropRef = ref}
+          style={[
+            styles.backdrop,
+            { width: deviceWidth, height: deviceHeight },
+          ]}
+        />
         <View
           ref={ref => this.contentRef = ref}
           style={[styles.content, style]}
