@@ -147,15 +147,17 @@ export class ReactNativeModal extends Component {
         {...otherProps}
       >
         <TouchableHighlight
-          onLayout={this._handleLayout}
           activeOpacity={isBackPressDismiss ? 0.5 : 1}
-          onPress={() => this._close()}
-          ref={ref => this.backdropRef = ref}
-          style={[
-            styles.backdrop,
-            { width: deviceWidth, height: deviceHeight },
-          ]}
-        />
+          onPress={() => this._close()} >
+          <View
+            onLayout={this._handleLayout}
+            ref={ref => this.backdropRef = ref}
+            style={[
+              styles.backdrop,
+              { width: deviceWidth, height: deviceHeight },
+            ]}
+          />
+        </TouchableHighlight>
         <View
           ref={ref => this.contentRef = ref}
           style={[styles.content, style]}
