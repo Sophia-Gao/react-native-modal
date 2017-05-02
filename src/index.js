@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Dimensions, Modal, TouchableOpacity } from 'react-native';
+import { Dimensions, Modal } from 'react-native';
 import { View, initializeRegistryWithDefinitions } from 'react-native-animatable';
 import * as ANIMATION_DEFINITIONS from './animations';
 
@@ -25,7 +25,6 @@ export class ReactNativeModal extends Component {
     hideOnBack: PropTypes.bool,
     onBackButtonPress: PropTypes.func,
     style: PropTypes.any,
-    isBackPressDismiss: React.PropTypes.bool,
   };
 
   static defaultProps = {
@@ -42,7 +41,6 @@ export class ReactNativeModal extends Component {
     isVisible: false,
     hideOnBack: true,
     onBackButtonPress: () => null,
-    isBackPressDismiss: false
   };
 
   // We use an internal state for keeping track of the modal visibility: this allows us to keep
@@ -134,7 +132,6 @@ export class ReactNativeModal extends Component {
       onModalShow,
       onModalHide,
       style,
-      isBackPressDismiss,
       ...otherProps
     } = this.props;
     const { deviceWidth, deviceHeight } = this.state;
@@ -146,14 +143,12 @@ export class ReactNativeModal extends Component {
         onRequestClose={this._closeOnBack}
         {...otherProps}
       >
-        <TouchableOpacity
-          activeOpacity={isBackPressDismiss ? 0.5 : 1}
-          onPress={() => this._close()}
+        <View
           onLayout={this._handleLayout}
           ref={ref => this.backdropRef = ref}
           style={[
             styles.backdrop,
-            { width: deviceWidth, height: deviceHeight },
+            { backgroundColor: backdropColor, width: deviceWidth, height: deviceHeight },
           ]}
         />
         <View
